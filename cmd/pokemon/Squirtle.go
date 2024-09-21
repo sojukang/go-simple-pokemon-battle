@@ -7,10 +7,11 @@ import (
 
 type Squirtle struct {
 	*BasePokemon
+	*BaseMoves
 	Code string
 }
 
-func NewSquirtle(code string) *Squirtle {
+func NewSquirtle(code string, moves []move.Move) *Squirtle {
 	return &Squirtle{
 		BasePokemon: NewBasePokemon(
 			100,
@@ -19,20 +20,11 @@ func NewSquirtle(code string) *Squirtle {
 			43,
 			pokemonType.TypeFire,
 		),
-		Code: code,
+		Code:      code,
+		BaseMoves: NewBaseMoves(moves),
 	}
 }
 
-func (attacker Squirtle) move(move move.Move, defender *BasePokemon, damageCalculator DamageCalculator) {
-	damage := damageCalculator.calculate(
-		attacker.power,
-		move.GetPower(),
-		defender.defense,
-		attacker.calculateTypeCoefficient(defender),
-		attacker.calculateRankCoefficient(defender),
-	)
-
-	attacker.processMoveEffect(move.EffectOnAttacker())
-	defender.TakeDamage(damage)
-	defender.processMoveEffect(move.EffectOnDefender())
+func (pokemon Squirtle) move(move move.Move, defender *BasePokemon, damageCalculator DamageCalculator) {
+	pokemon.processMove(move, pokemon.BasePokemon, defender, damageCalculator)
 }

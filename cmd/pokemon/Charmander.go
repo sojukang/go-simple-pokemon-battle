@@ -7,10 +7,11 @@ import (
 
 type Charmander struct {
 	*BasePokemon
+	*BaseMoves
 	Code string
 }
 
-func NewCharmander(code string) *Charmander {
+func NewCharmander(code string, moves []move.Move) *Charmander {
 	return &Charmander{
 		BasePokemon: NewBasePokemon(
 			100,
@@ -19,20 +20,11 @@ func NewCharmander(code string) *Charmander {
 			65,
 			pokemonType.TypeFire,
 		),
-		Code: code,
+		Code:      code,
+		BaseMoves: NewBaseMoves(moves),
 	}
 }
 
-func (attacker Charmander) move(move move.Move, defender *BasePokemon, damageCalculator DamageCalculator) {
-	damage := damageCalculator.calculate(
-		attacker.power,
-		move.GetPower(),
-		defender.defense,
-		attacker.calculateTypeCoefficient(defender),
-		attacker.calculateRankCoefficient(defender),
-	)
-
-	attacker.processMoveEffect(move.EffectOnAttacker())
-	defender.TakeDamage(damage)
-	defender.processMoveEffect(move.EffectOnDefender())
+func (pokemon Charmander) move(move move.Move, defender *BasePokemon, damageCalculator DamageCalculator) {
+	pokemon.processMove(move, pokemon.BasePokemon, defender, damageCalculator)
 }

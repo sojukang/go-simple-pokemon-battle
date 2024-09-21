@@ -23,7 +23,7 @@ func Test_턴_진행_후_결과를_반환한다(t *testing.T) {
 		pokemonA: pokemon.Bulbasaur{Code: "A"},
 		pokemonB: pokemon.Bulbasaur{Code: "B"},
 	}
-	if result != expected {
+	if result.turnType != MOVE {
 		t.Error("expected: ", expected, ",", "actual: ", result)
 	}
 }

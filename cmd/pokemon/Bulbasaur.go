@@ -7,10 +7,11 @@ import (
 
 type Bulbasaur struct {
 	*BasePokemon
+	*BaseMoves
 	Code string
 }
 
-func NewBulbasaur(code string) *Bulbasaur {
+func NewBulbasaur(code string, moves []move.Move) *Bulbasaur {
 	return &Bulbasaur{
 		BasePokemon: NewBasePokemon(
 			100,
@@ -19,20 +20,11 @@ func NewBulbasaur(code string) *Bulbasaur {
 			45,
 			pokemonType.TypeGrass,
 		),
-		Code: code,
+		Code:      code,
+		BaseMoves: NewBaseMoves(moves),
 	}
 }
 
-func (attacker Bulbasaur) move(move move.Move, defender *BasePokemon, damageCalculator DamageCalculator) {
-	damage := damageCalculator.calculate(
-		attacker.power,
-		move.GetPower(),
-		defender.defense,
-		attacker.calculateTypeCoefficient(defender),
-		attacker.calculateRankCoefficient(defender),
-	)
-
-	attacker.processMoveEffect(move.EffectOnAttacker())
-	defender.TakeDamage(damage)
-	defender.processMoveEffect(move.EffectOnDefender())
+func (pokemon Bulbasaur) move(move move.Move, defender *BasePokemon, damageCalculator DamageCalculator) {
+	pokemon.processMove(move, pokemon.BasePokemon, defender, damageCalculator)
 }
