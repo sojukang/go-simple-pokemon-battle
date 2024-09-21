@@ -1,10 +1,10 @@
 package battle
 
-import "go-simple-pokemon-battle/cmd/Pokemon"
+import "go-simple-pokemon-battle/cmd/pokemon"
 
 type Battle struct {
-	pokemonA Pokemon.Pokemon
-	pokemonB Pokemon.Pokemon
+	pokemonA pokemon.Pokemon
+	pokemonB pokemon.Pokemon
 }
 
 type TurnCommand struct {
@@ -13,8 +13,8 @@ type TurnCommand struct {
 
 type TurnResult struct {
 	turnType TurnType
-	pokemonA Pokemon.Pokemon
-	pokemonB Pokemon.Pokemon
+	pokemonA pokemon.Pokemon
+	pokemonB pokemon.Pokemon
 }
 
 func (battle *Battle) doTurn(command TurnCommand) TurnResult {
