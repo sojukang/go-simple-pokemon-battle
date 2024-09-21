@@ -2,7 +2,7 @@ package pokemon
 
 import (
 	"go-simple-pokemon-battle/cmd/pokemon/move"
-	"go-simple-pokemon-battle/cmd/pokemon/type"
+	"go-simple-pokemon-battle/cmd/pokemon/pokemonType"
 )
 
 type BasePokemon struct {
@@ -11,10 +11,10 @@ type BasePokemon struct {
 	defenseRank *Rank
 	power       int
 	defense     int
-	pokemonType _type.Type
+	pokemonType pokemonType.PokemonType
 }
 
-func NewBasePokemon(hp int, power int, defense int, pokemonType _type.Type) *BasePokemon {
+func NewBasePokemon(hp int, power int, defense int, pokemonType pokemonType.PokemonType) *BasePokemon {
 	return &BasePokemon{hp: hp, powerRank: NewRank(), defenseRank: NewRank(), power: power, defense: defense, pokemonType: pokemonType}
 }
 

@@ -1,12 +1,12 @@
 package move
 
 import (
-	"go-simple-pokemon-battle/cmd/pokemon/type"
+	"go-simple-pokemon-battle/cmd/pokemon/pokemonType"
 )
 
 type 째려보기 struct {
 	power    int
-	moveType _type.Type
+	moveType pokemonType.PokemonType
 	name     string
 }
 
@@ -25,7 +25,7 @@ func (move *째려보기) GetPower() int {
 func new째려보기() *째려보기 {
 	return &째려보기{
 		power:    0,
-		moveType: _type.TYPE_NORMAL,
+		moveType: pokemonType.TypeNormal,
 		name:     "째려보기",
 	}
 }

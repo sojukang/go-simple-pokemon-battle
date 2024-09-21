@@ -2,7 +2,7 @@ package pokemon
 
 import (
 	"go-simple-pokemon-battle/cmd/pokemon/move"
-	pokemonType "go-simple-pokemon-battle/cmd/pokemon/type"
+	pokemonType "go-simple-pokemon-battle/cmd/pokemon/pokemonType"
 )
 
 type Pokemon interface {
@@ -20,7 +20,7 @@ func NewBulbasaur(code string) *Bulbasaur {
 			100,
 			65,
 			65,
-			pokemonType.TYPE_NORMAL,
+			pokemonType.TypeGrass,
 		),
 		Code: code,
 	}

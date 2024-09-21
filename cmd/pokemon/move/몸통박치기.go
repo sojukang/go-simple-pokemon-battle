@@ -1,12 +1,12 @@
 package move
 
 import (
-	"go-simple-pokemon-battle/cmd/pokemon/type"
+	"go-simple-pokemon-battle/cmd/pokemon/pokemonType"
 )
 
 type 몸통박치기 struct {
 	power    int
-	moveType _type.Type
+	moveType pokemonType.PokemonType
 	name     string
 }
 
@@ -25,7 +25,7 @@ func (move *몸통박치기) GetPower() int {
 func new몸통박치기() *몸통박치기 {
 	return &몸통박치기{
 		power:    35,
-		moveType: _type.TYPE_NORMAL,
+		moveType: pokemonType.TypeNormal,
 		name:     "몸통박치기",
 	}
 }
