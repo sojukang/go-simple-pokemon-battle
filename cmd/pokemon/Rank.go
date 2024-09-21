@@ -1,5 +1,7 @@
 package pokemon
 
+const maxRank = 2
+
 type Rank struct {
 	value int
 }
@@ -9,13 +11,21 @@ func NewRank() *Rank {
 }
 
 func (rank *Rank) increase() {
-	rank.value++
+	if rank.value < maxRank {
+		rank.value++
+	}
 }
 
 func (rank *Rank) decrease() {
-	rank.value--
+	if rank.value > -maxRank {
+		rank.value--
+	}
 }
 
 func (rank *Rank) getCoefficient() float32 {
-	return 1 + float32(rank.value)*0.5
+	if rank.value < 0 {
+		return 2 / float32(2-rank.value)
+	} else {
+		return float32(2+(rank.value)) / 2
+	}
 }
