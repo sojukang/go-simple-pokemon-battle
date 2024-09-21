@@ -16,6 +16,7 @@ func NewSquirtle(code string) *Squirtle {
 			100,
 			50,
 			65,
+			43,
 			pokemonType.TypeFire,
 		),
 		Code: code,

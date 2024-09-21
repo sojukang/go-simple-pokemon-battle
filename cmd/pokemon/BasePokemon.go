@@ -11,11 +11,12 @@ type BasePokemon struct {
 	defenseRank *Rank
 	power       int
 	defense     int
+	speed       int
 	pokemonType pokemonType.PokemonType
 }
 
-func NewBasePokemon(hp int, power int, defense int, pokemonType pokemonType.PokemonType) *BasePokemon {
-	return &BasePokemon{hp: hp, powerRank: NewRank(), defenseRank: NewRank(), power: power, defense: defense, pokemonType: pokemonType}
+func NewBasePokemon(hp int, power int, defense int, speed int, pokemonType pokemonType.PokemonType) *BasePokemon {
+	return &BasePokemon{hp: hp, powerRank: NewRank(), defenseRank: NewRank(), power: power, defense: defense, speed: speed, pokemonType: pokemonType}
 }
 
 func (basePokemon *BasePokemon) TakeDamage(damage int) {

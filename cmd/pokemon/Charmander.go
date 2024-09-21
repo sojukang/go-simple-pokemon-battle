@@ -16,6 +16,7 @@ func NewCharmander(code string) *Charmander {
 			100,
 			65,
 			50,
+			65,
 			pokemonType.TypeFire,
 		),
 		Code: code,

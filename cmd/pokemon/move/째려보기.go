@@ -8,6 +8,11 @@ type 째려보기 struct {
 	power    int
 	moveType pokemonType.PokemonType
 	name     string
+	pp       int
+}
+
+func (move *째려보기) GetPP() int {
+	return move.pp
 }
 
 func (move *째려보기) EffectOnAttacker() int {
@@ -27,5 +32,6 @@ func new째려보기() *째려보기 {
 		power:    0,
 		moveType: pokemonType.TypeNormal,
 		name:     "째려보기",
+		pp:       30,
 	}
 }

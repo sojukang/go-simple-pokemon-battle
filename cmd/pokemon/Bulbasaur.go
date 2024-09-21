@@ -16,6 +16,7 @@ func NewBulbasaur(code string) *Bulbasaur {
 			100,
 			65,
 			65,
+			45,
 			pokemonType.TypeGrass,
 		),
 		Code: code,
