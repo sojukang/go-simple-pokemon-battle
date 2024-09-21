@@ -1,0 +1,9 @@
+package move
+
+const (
+	NONE = iota + 1
+	ATTACK_PLUS_1
+	ATTACK_MINUS_1
+	DEFENSE_PLUS_1
+	DEFENSE_MINUS_1
+)

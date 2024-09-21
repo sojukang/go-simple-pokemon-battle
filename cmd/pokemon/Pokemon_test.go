@@ -1,10 +1,11 @@
 package pokemon
 
 import (
+	"go-simple-pokemon-battle/cmd/pokemon/move"
 	"testing"
 )
 
-func Test_포켓몬_코드를_반환한다(t *testing.T) {
+func Test_코드를_반환한다(t *testing.T) {
 	// given
 	testPokemon := NewBulbasaur("A")
 
@@ -18,7 +19,7 @@ func Test_포켓몬_코드를_반환한다(t *testing.T) {
 	}
 }
 
-func Test_포켓몬_데미지를_입는다(t *testing.T) {
+func Test_데미지를_입는다(t *testing.T) {
 	// given
 	testPokemon := NewBulbasaur("A")
 	initialHp := testPokemon.hp
@@ -34,7 +35,7 @@ func Test_포켓몬_데미지를_입는다(t *testing.T) {
 	}
 }
 
-func Test_포켓몬_공격기술_사용시_데미지를_입힌다(t *testing.T) {
+func Test_공격기술_사용시_데미지를_입힌다(t *testing.T) {
 	// given
 	attacker := NewBulbasaur("A")
 	defender := NewBulbasaur("B")
@@ -42,7 +43,7 @@ func Test_포켓몬_공격기술_사용시_데미지를_입힌다(t *testing.T) 
 	initialHp := defender.hp
 
 	// when
-	attacker.move(MOVE_몸통박치기,
+	attacker.move(move.MOVE_몸통박치기,
 		defender.BasePokemon,
 		&testDamageCalculator,
 	)
@@ -50,6 +51,27 @@ func Test_포켓몬_공격기술_사용시_데미지를_입힌다(t *testing.T) 
 
 	// then
 	expected := initialHp - 10
+	if result != expected {
+		t.Error("expected: ", expected, ",", "actual: ", result)
+	}
+}
+
+func Test_변화기술_사용시_랭크_변화시킨다(t *testing.T) {
+	// given
+	attacker := NewBulbasaur("A")
+	defender := NewBulbasaur("B")
+	damageCalculator := TestDamageCalculator{}
+	initialDefenderDefenseRank := defender.defenseRank.value
+
+	// when
+	attacker.move(move.MOVE_째려보기,
+		defender.BasePokemon,
+		&damageCalculator,
+	)
+	result := defender.defenseRank.value
+
+	// then
+	expected := initialDefenderDefenseRank - 1
 	if result != expected {
 		t.Error("expected: ", expected, ",", "actual: ", result)
 	}

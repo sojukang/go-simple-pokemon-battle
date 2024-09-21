@@ -1,7 +1,12 @@
 package pokemon
 
+import (
+	"go-simple-pokemon-battle/cmd/pokemon/move"
+	pokemonType "go-simple-pokemon-battle/cmd/pokemon/type"
+)
+
 type Pokemon interface {
-	move(move Move, defender *BasePokemon, damageCalculator DamageCalculator)
+	move(move move.Move, defender *BasePokemon, damageCalculator DamageCalculator)
 }
 
 type Bulbasaur struct {
@@ -15,20 +20,22 @@ func NewBulbasaur(code string) *Bulbasaur {
 			100,
 			65,
 			65,
-			TYPE_NORMAL,
+			pokemonType.TYPE_NORMAL,
 		),
 		Code: code,
 	}
 }
 
-func (pokemon Bulbasaur) move(move Move, defender *BasePokemon, damageCalculator DamageCalculator) {
+func (attacker Bulbasaur) move(move move.Move, defender *BasePokemon, damageCalculator DamageCalculator) {
 	damage := damageCalculator.calculate(
-		pokemon.power,
-		move.getPower(),
+		attacker.power,
+		move.GetPower(),
 		defender.defense,
-		pokemon.calculateTypeCoefficient(defender),
-		pokemon.calculateRankCoefficient(defender),
+		attacker.calculateTypeCoefficient(defender),
+		attacker.calculateRankCoefficient(defender),
 	)
 
+	attacker.processMoveEffect(move.EffectOnAttacker())
 	defender.TakeDamage(damage)
+	defender.processMoveEffect(move.EffectOnDefender())
 }
